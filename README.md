@@ -234,41 +234,6 @@ Go to the directory `../U-GAT-IT/`, and after installing MindSpore through the o
   # (8) Create a training job
   ```
 
-- Training on GPU
-
-  ```shell
-  # Standalone training
-  bash run_standalone_train_gpu.sh [DEVICE_ID] [DATA_PATH] [<LR>] [<LIGHT>] [<LOSS_SCALE>] [<USE_GLOBAL_NORM>]
-
-  # Multi-GPU training
-  bash run_distributed_train_gpu.sh [RANK_SIZE] [DATA_PATH] [<LR>] [<LIGHT>] [<LOSS_SCALE>] [<USE_GLOBAL_NORM>]
-  ```
-
-  Example:
-
-  ```shell
-  # Standalone training
-  bash run_standalone_train_gpu.sh 0 /path/to/data/ 0.0001 True 1.0 False
-
-  # Multi-GPU training
-  bash run_distributed_train_gpu.sh 8 /path/to/data 0.000025 True 1.0 False
-  ```
-
-- Evaluation on GPU
-
-  ```shell
-  bash run_eval_gpu.sh [DEVICE_ID] [DATA_PATH] [OUTPUT_PATH] [LIGHT] [<INCEPTION_CKPT_PATH>]
-  ```
-
-  Example:
-
-  ```shell
-  # Evaluation without metrics computation
-  bash run_eval_gpu.sh 0 /path/to/data/ /output/path True
-
-  # Evaluation with metrics computation using an existing checkpoint
-  # To compute metrics, you need to specify inception ckpt path
-  bash run_eval_gpu.sh 0 /path/to/data/ /output/path True inception_for_metrics.ckpt
   ```
 
   To create a checkpoint for metrics computation, install tensorflow==1.13.1 and run:
@@ -351,24 +316,23 @@ After training the generator model, you can export the ckpt file to MINDIR forma
 
 #### [U-GAT-IT on selfie2anime dataset](#table-of-contents)
 
-| Parameters          | Ascend                                                                                         | GPU                                                                                                                           |
-|---------------------|------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| Model name          | U-GAT-IT                                                                                       | U-GAT-IT (light)                                                                                                              |
-| Resource            | Ascend: 8 * Ascend-910(32GB) <br /> ARM: 192 cores 2048GB <br /> CentOS 4.18.0-193.el8.aarch64 | GPU: 8 * GeForce RTX 3090 <br /> CPU 2.90GHz, 64 cores <br /> RAM:252G                                                        |
-| Upload date         | 2021-12-23                                                                                     | 2022-02-28                                                                                                                    |
-| MindSpore version   | 1.5.0                                                                                          | 1.5.0                                                                                                                         |
-| Datasets            | selfie2anime                                                                                   | selfie2anime                                                                                                                  |
-| Training parameters | epoch=100, batch_size = 1, lr=0.0001                                                           | light=True, epoch=100, batch_size=1, lr=0.000025, <br /> loss_scale=1.0, use_global_norm=False                                |
-| Optimizer           | Adam                                                                                           | Adam                                                                                                                          |
-| Loss function       | Custom loss function                                                                           | Custom loss function                                                                                                          |
-| Output              | Image                                                                                          | Image                                                                                                                         |
-| Speed               | 640ms/step                                                                                     | 690 ms/step                                                                                                                   |
-| Checkpoint          | 1.04GB, ckpt file                                                                              | 41 MB, ckpt file                                                                                                              |
-| Metrics             | -                                                                                              | Kernel Inception Distance (KID) <br /> Typical good results for KID metrics are in range (10.5, 12.5), <br /> lower is better |
-| KID                 | -                                                                                              | KID mean :  10.8664 <br /> KID stddev :  0.4290                                                                               |
+| Parameters          | Ascend                                                                                         |                                                                                 |
+|---------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| Model name          | U-GAT-IT                                                                                       |                                                                                                           |
+| Resource            | Ascend: 8 * Ascend-910(32GB) <br /> ARM: 192 cores 2048GB <br /> CentOS 4.18.0-193.el8.aarch64 |                                                       |
+| Upload date         | 2021-12-23                                                                                     |                                                                                                                  |
+| MindSpore version   | 1.5.0                                                                                          |                                                                                                                     |
+| Datasets            | selfie2anime                                                                                   |                                                                                                              |
+| Training parameters | epoch=100, batch_size = 1, lr=0.0001                                                           |                       
+| Optimizer           | Adam                                                                                           |                                                                                                                         |
+| Loss function       | Custom loss function                                                                           |                                                                                                        |
+| Output              | Image                                                                                          |                                                                                                                      |
+| Speed               | 640ms/step                                                                                     |                                                                                                                  |
+| Checkpoint          | 1.04GB, ckpt file                                                                              |                                                                                                               |
+| Metrics             | -                                                                                              | 
+| KID                 | -                                                                                              |                                                                         |
 
-> The checkpoint of UGATIT trained on GPU (selfie2anime_genA2B_params_0000100.ckpt) and the checkpoit for metrics computation (inception.ckpt)
-> are available [here](https://disk.yandex.ru/d/_MbEh0uGG9_eyA).
+
 
 # [Description of Random Situation](#table-of-contents)
 
