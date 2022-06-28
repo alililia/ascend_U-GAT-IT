@@ -49,8 +49,8 @@ Dataset used：[selfie2anime](https://drive.google.com/file/d/1xOWj1UVgp6NKMT3Hb
 
 # [Environmental Requirements](#table-of-contents)
 
-- Hardware (Ascend/GPU/CPU)
-    - Use Ascend/GPU/CPU processor to build hardware environment.
+- Hardware (Ascend/CPU)
+    - Use Ascend/CPU processor to build hardware environment.
 - Framework
     - [MindSpore](https://www.mindspore.cn/install/en)
 - For more information, please check the following resources:
